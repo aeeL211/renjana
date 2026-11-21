@@ -177,7 +177,8 @@ object AppRuntimeRegistry {
             val tasks = am.appTasks.toList()
             for (task in tasks) {
                 try {
-                    val base = task.taskInfo.baseIntent ?: continue
+                    val taskInfo = task.taskInfo ?: continue
+                    val base = taskInfo.baseIntent ?: continue
                     val comp = base.component ?: continue
                     if (!comp.className.startsWith("com.fesu.renjana.core.StubActivity")) continue
                     val instId = base.getStringExtra(StubActivity.EXTRA_INSTANCE_ID)

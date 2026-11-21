@@ -79,6 +79,10 @@ object GuestInfoCache {
             // getPackageArchiveInfo leaves sourceDir / publicSourceDir pointing at the
             // archive path. Set the native library dir too so the guest can load .so files.
             val appInfo = pkgInfo.applicationInfo
+            if (appInfo == null) {
+                RenjanaLog.e(TAG, "applicationInfo is null for $apkPath")
+                return false
+            }
             appInfo.sourceDir = apkPath
             appInfo.publicSourceDir = apkPath
             val nativeLibDir = java.io.File(apkPath).parentFile?.let { parent ->

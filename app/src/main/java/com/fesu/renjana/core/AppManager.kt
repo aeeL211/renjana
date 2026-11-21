@@ -17,19 +17,20 @@ class AppManager(private val context: Context) {
         try {
             val pm = context.packageManager
             val packages = pm.getInstalledPackages(PackageManager.GET_META_DATA)
-            packages.filter { (it.applicationInfo.flags and ApplicationInfo.FLAG_SYSTEM) == 0 }
-                .map { pkg ->
-                    AppInfo(
-                        packageName = pkg.packageName,
-                        appName = pkg.applicationInfo.loadLabel(pm).toString(),
-                        versionName = pkg.versionName ?: "1.0",
-                        versionCode = if (android.os.Build.VERSION.SDK_INT >= 28) pkg.longVersionCode.toInt() else @Suppress("DEPRECATION") pkg.versionCode,
-                        apkPath = pkg.applicationInfo.sourceDir,
-                        iconPath = null,
-                        installedDate = pkg.firstInstallTime,
-                        updatedDate = pkg.lastUpdateTime
-                    )
-                }.sortedBy { it.appName }
+            packages.mapNotNull { pkg ->
+                val appInfo = pkg.applicationInfo ?: return@mapNotNull null
+                if ((appInfo.flags and ApplicationInfo.FLAG_SYSTEM) != 0) return@mapNotNull null
+                AppInfo(
+                    packageName = pkg.packageName,
+                    appName = appInfo.loadLabel(pm).toString(),
+                    versionName = pkg.versionName ?: "1.0",
+                    versionCode = if (android.os.Build.VERSION.SDK_INT >= 28) pkg.longVersionCode.toInt() else @Suppress("DEPRECATION") pkg.versionCode,
+                    apkPath = appInfo.sourceDir,
+                    iconPath = null,
+                    installedDate = pkg.firstInstallTime,
+                    updatedDate = pkg.lastUpdateTime
+                )
+            }.sortedBy { it.appName }
         } catch (e: Exception) {
             RenjanaLog.e(TAG, "Failed to get installed apps: ${e.message}")
             emptyList()

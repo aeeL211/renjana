@@ -197,8 +197,8 @@ class VirtualClassLoader(
             }
 
             val pkgInfo = pm.getPackageArchiveInfo(apkPath, 0)
-            if (pkgInfo?.applicationInfo != null) {
-                val ai = pkgInfo.applicationInfo
+            val ai = pkgInfo?.applicationInfo
+            if (ai != null) {
                 ai.sourceDir = apkPath
                 ai.publicSourceDir = apkPath
                 val splits = allApkPaths.filter { it != apkPath }.toTypedArray()
