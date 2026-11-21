@@ -78,3 +78,5 @@
 # ── Suppress R8 warnings about missing classes ──
 -dontwarn javax.annotation.**
 -dontwarn org.jetbrains.annotations.**
+-dontwarn de.robv.android.xposed.**
+-dontwarn com.google.android.gms.**

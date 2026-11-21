@@ -5,7 +5,7 @@
 **Modern Android Multi-App Virtual Container with True Sandbox Isolation & Anti-Detection**
 
 [![Android](https://img.shields.io/badge/Android-10%2B%20(API%2029%2B)-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://developer.android.com)
-[![Kotlin](https://img.shields.io/badge/Kotlin-1.9.20-7F52FF?style=for-the-badge&logo=kotlin&logoColor=white)](https://kotlinlang.org)
+[![Kotlin](https://img.shields.io/badge/Kotlin-2.4.21-7F52FF?style=for-the-badge&logo=kotlin&logoColor=white)](https://kotlinlang.org)
 [![Version](https://img.shields.io/badge/Release-v0.2.0-007ACC?style=for-the-badge&logo=github)](CHANGELOG.md)
 [![License](https://img.shields.io/badge/License-Apache%202.0-success?style=for-the-badge)](LICENSE)
 
@@ -71,7 +71,7 @@ graph TD
 
 - **Operating System:** Android 10.0+ (API Level 29+)
 - **Architecture:** `arm64-v8a`, `armeabi-v7a`
-- **Build Toolchain:** JDK 17, Android Gradle Plugin 8.1.0+, Kotlin 1.9.20
+- **Build Toolchain:** JDK 17, Android Gradle Plugin 9.5.2, Kotlin 2.4.21, Gradle 9.7.1
 
 ---
 
@@ -91,6 +91,17 @@ cd renjana
 # Release Build (Requires Keystore)
 ./gradlew assembleRelease
 ```
+
+### Automated release builds
+
+Every push and every manual run of the **Build Release APK** workflow builds the release APKs (per-ABI + universal) and uploads them as workflow artifacts. If no release keystore is configured, the APKs are signed with the debug key so they remain installable.
+
+Optional repository secrets for a stable release signature:
+
+- `RENJANA_KEYSTORE_BASE64` — base64-encoded release keystore (`.jks`)
+- `RENJANA_RELEASE_STORE_PASSWORD`
+- `RENJANA_RELEASE_KEY_ALIAS`
+- `RENJANA_RELEASE_KEY_PASSWORD`
 
 ---
 
@@ -123,13 +134,13 @@ Detailed module guides are available in the [`docs/`](docs/README.md) directory:
 
 | Layer | Component | Version |
 | :--- | :--- | :--- |
-| **Language** | Kotlin | `1.9.20` |
-| **UI Toolkit** | Jetpack Compose BOM | `2023.10.01` |
-| **Local Database** | Room DB | `2.6.0` |
-| **Concurrency** | KotlinX Coroutines | `1.7.3` |
+| **Language** | Kotlin | `2.4.21` |
+| **UI Toolkit** | Jetpack Compose BOM | `2026.11.01` |
+| **Local Database** | Room DB | `2.8.5` |
+| **Concurrency** | KotlinX Coroutines | `1.11.0` |
 | **Hook Engine** | Pine Framework | `0.3.0` |
 | **Xposed Bridge** | Pine Xposed Layer | `0.2.0` |
-| **Navigation** | AndroidX Navigation Compose | `2.7.4` |
+| **Navigation** | AndroidX Navigation Compose | `2.10.2` |
 
 ---
 

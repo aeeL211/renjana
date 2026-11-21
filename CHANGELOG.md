@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### 🔧 Changed
+
+- Modernized the build toolchain to the latest stable releases: Android Gradle Plugin `9.5.2`, Gradle `9.7.1`, Kotlin `2.4.21`, KSP `2.3.14`, and compile/target SDK `37`.
+- Migrated to AGP 9 built-in Kotlin and the Kotlin Compose compiler plugin.
+- Updated AndroidX, Jetpack Compose BOM `2026.11.01`, Room `2.8.5`, Coroutines `1.11.0`, Gson `2.15.0`, and Google Play Services stubs.
+- Replaced the legacy CI workflow with `.github/workflows/build.yml`, which builds release APKs on every push and on manual dispatch, with optional release keystore signing.
+
 ## [0.2.0] - 2026-08-26
 
 ### 🚀 Major Feature & Stability Release: Multi-App Instances & Android 14/15 Hardening
