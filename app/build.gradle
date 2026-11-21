@@ -14,6 +14,7 @@ def hasReleaseSigning = keystoreFile.exists() && releaseStorePassword != null
 android {
     namespace 'com.fesu.renjana'
     compileSdk 37
+    compileSdkMinor 2
 
     defaultConfig {
         applicationId "com.fesu.renjana"
